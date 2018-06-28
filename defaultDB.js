@@ -23,7 +23,7 @@ module.exports = db =>
       projects: [{
         id: 0,
         employees: [0],
-        creationDate: '2018-06-22T18:25:43.511Z'
+        creationDate: '2018-06-22T18:25:43.511Z',
         name: 'Warner Music Group',
         description: 'New UI for the company\'s managers'
       }],

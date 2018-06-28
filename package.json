@@ -17,7 +17,9 @@
     "uuid": "^3.2.1"
   },
   "nodemonConfig": {
-    "ignore": ["db.json"]
+    "ignore": [
+      "db.json"
+    ]
   },
   "config": {
     "enableAuthorization": false

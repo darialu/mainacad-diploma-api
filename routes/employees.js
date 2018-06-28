@@ -29,7 +29,7 @@ module.exports = app => {
   app.delete('/employees/:id', (req, res) => {
       const { id } = req.params;
 
-      removeEmployee(id);
+      removeEmployee(Number(id));
       res.send(getEmployees());
   });
 
@@ -37,19 +37,19 @@ module.exports = app => {
       const { id } = req.params;
       const { body: employee } = req;
 
-      changeEmployee({ ...employee, id });
+      changeEmployee({ ...employee, id: Number(id) });
       res.send(getEmployees());
   });
 
   app.get('/employees/:id', (req, res) => {
     const { id } = req.params;
 
-    res.send(getEmployee(id));
+    res.send(getEmployee(Number(id)));
   });
 
   app.get('/employees/:id/projects', (req, res) => {
     const { id } = req.params;
 
-    res.send(getEmployeeProjects(id));
+    res.send(getEmployeeProjects(Number(id)));
   });
 }
