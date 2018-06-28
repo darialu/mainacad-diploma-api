@@ -11,7 +11,7 @@ const {
 
 module.exports = app => {
   app.get('/employees', (req, res) =>
-    res.send(getEmployees())
+    res.send(getEmployees());
   );
 
   app.post('/employees', (req, res) => {
