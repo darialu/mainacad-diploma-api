@@ -105,3 +105,8 @@ exports.getPositionById = id => db
   .get('positions')
   .find({ id })
   .value();
+
+exports.getLocationById = id => db
+  .get('locations')
+  .find({ id })
+  .value();

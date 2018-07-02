@@ -5,6 +5,7 @@ const {
   getEmployee,
   removeEmployee,
   getPositionById,
+  getLocationById,
   changeEmployee,
   getEmployeeProjects
 } = require('../model.js');
@@ -15,12 +16,19 @@ module.exports = app => {
   );
 
   app.post('/employees', (req, res) => {
-      const { positionId, ...employeeData } = req.body;
+      const {
+        positionId,
+        locationId,
+        ...employeeData
+      } = req.body;
       const id = uuid();
 
       addEmployee({
         ...employeeData,
         position: getPositionById(positionId),
+        positionId,
+        location: getLocationById(locationId),
+        positionId,
         id
       });
       res.send(getEmployee(id));
