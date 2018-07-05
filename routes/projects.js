@@ -29,7 +29,7 @@ module.exports = app => {
   app.delete('/projects/:id', (req, res) => {
       const { id } = req.params;
 
-      removeProject(Number(id));
+      removeProject(id);
       res.send(getProjects());
   });
 
@@ -37,13 +37,13 @@ module.exports = app => {
       const { id } = req.params;
       const { body: project } = req;
 
-      changeProject({ ...project, id: Number(id) });
+      changeProject({ ...project, id });
       res.send(getProjects());
   });
 
   app.get('/projects/:id/employees', (req, res) => {
       const { id } = req.params;
-      const project = getProject(Number(id));
+      const project = getProject(id);
 
       if (!project) {
         res.status(400).send({ status: 'Project not found' });
