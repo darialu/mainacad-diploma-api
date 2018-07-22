@@ -35,7 +35,7 @@ module.exports = app => {
     }
 
     const token = uuid(foundUser.email);
-    const expirationDate = moment().add('days', 7).unix();
+    const expirationDate = moment().add(7, 'days').utc().unix();
 
     addToken({ token, expirationDate, userId: foundUser.id });
 
