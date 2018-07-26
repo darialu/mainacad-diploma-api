@@ -28,7 +28,7 @@ module.exports = app => {
         position: getPositionById(positionId),
         positionId,
         location: getLocationById(locationId),
-        positionId,
+        locationId,
         id
       });
       res.send(getEmployee(id));
@@ -43,9 +43,16 @@ module.exports = app => {
 
   app.put('/employees/:id', (req, res) => {
       const { id } = req.params;
-      const { body: employee } = req;
+      const { positionId, locationId, ...employeeData } = req.body;
 
-      changeEmployee({ ...employee, id });
+      changeEmployee({ 
+        ...employeeData,
+        position: getPositionById(positionId),
+        positionId,
+        location: getLocationById(locationId),
+        locationId,
+        id
+      });
       res.send(getEmployees());
   });
 
