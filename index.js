@@ -7,12 +7,20 @@ const fillDbDefault  = require('./defaultDb');
 const config         = require('./package.json').config;
 const moment         = require('moment');
 const port = 8000;
+const AUTH_TOKEN_HEADER = 'AuthToken'
+const ALLOWED_HEADERS = [
+  'Origin',
+  'X-Requested-With',
+  'Content-Type',
+  'Accept',
+  AUTH_TOKEN_HEADER
+].join(',')
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", ALLOWED_HEADERS);
   next();
 });
 
@@ -22,7 +30,8 @@ app.use((req, res, next) => {
     return;
   }
 
-  const token = req.headers['AuthToken'] || req.headers['authtoken'];
+  const token = req.headers[AUTH_TOKEN_HEADER]
+    || req.headers[AUTH_TOKEN_HEADER.toLowerCase()];
   const foundSession = db
     .get('authSessions')
     .find({ token })

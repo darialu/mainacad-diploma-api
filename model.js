@@ -53,6 +53,13 @@ exports.getProject = id => db
   .find({ id })
   .value();
 
+exports.changeProject = project => db
+  .get('projects')
+  .find({ id: project.id })
+  .assign(project)
+  .write();
+
+
 exports.addProject = project => db
   .get('projects')
   .post(project)
