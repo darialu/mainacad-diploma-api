@@ -29,6 +29,12 @@ app.use((req, res, next) => {
     next();
     return;
   }
+  
+  let isPreflight = res.req.method === 'OPTIONS';
+  if (isPreflight) {
+    next();
+    return;
+  }
 
   const token = req.headers[AUTH_TOKEN_HEADER]
     || req.headers[AUTH_TOKEN_HEADER.toLowerCase()];
