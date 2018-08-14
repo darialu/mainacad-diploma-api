@@ -98,9 +98,13 @@ exports.getTask = id => db
 
 exports.addTask = task => db
   .get('tasks')
-  .post(task)
-  .write()
-  .value();
+  .push(task)
+  .write();
+
+ exports.deleteTask = id => db
+  .get('tasks')
+  .remove({ id })
+  .write();
 
 exports.getEmployeeProjects = employeeId => db
   .get('projects')
