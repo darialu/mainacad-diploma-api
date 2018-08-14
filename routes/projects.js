@@ -14,17 +14,17 @@ module.exports = app => {
     res.send(getProjects())
   );
 
-  app.post('/projects', (req, res) => {
-      const { body: project } = req;
-      const id = uuid();
+    app.post('/projects', (req, res) => {
+    const { ...project } = req.body;
+    const id = uuid();
 
-      addProject({
-        ...project,
-        creationDate: moment().toJSON(),
-        id
-      });
-      res.send(getProject(id));
-  });
+    addProject({
+      ...project,
+      creationDate: moment().toJSON(),
+      id
+    });
+    res.send(getProject(id));
+});
 
   app.delete('/projects/:id', (req, res) => {
       const { id } = req.params;
