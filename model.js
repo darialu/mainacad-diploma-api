@@ -62,9 +62,8 @@ exports.changeProject = project => db
 
 exports.addProject = project => db
   .get('projects')
-  .post(project)
-  .write()
-  .value();
+  .push(project)
+  .write();
 
 exports.removeProject = id => db
   .get('projects')
