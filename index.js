@@ -29,13 +29,14 @@ app.use((req, res, next) => {
     next();
     return;
   }
-  
+
+  // OPTIONS request means preflight request. Don't check token for it.
   let isPreflight = res.req.method === 'OPTIONS';
   if (isPreflight) {
     next();
     return;
   }
-
+  
   const token = req.headers[AUTH_TOKEN_HEADER]
     || req.headers[AUTH_TOKEN_HEADER.toLowerCase()];
   const foundSession = db

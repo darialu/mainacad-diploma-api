@@ -14,7 +14,20 @@ module.exports = app => {
     res.send(getProjects())
   );
 
-    app.post('/projects', (req, res) => {
+  // app.post('/projects', (req, res) => {
+  //     const { body: project } = req;
+  //     // const { ...project } = req.body;
+  //     const id = uuid();
+
+  //     addProject({
+  //       ...project,
+  //       creationDate: moment().toJSON(),
+  //       id
+  //     });
+  //     res.send(getProject(id));
+  // });
+
+  app.post('/projects', (req, res) => {
     const { ...project } = req.body;
     const id = uuid();
 

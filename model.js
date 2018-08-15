@@ -60,6 +60,12 @@ exports.changeProject = project => db
   .write();
 
 
+// exports.addProject = project => db
+//   .get('projects')
+//   .post(project)
+//   .write()
+//   .value();
+
 exports.addProject = project => db
   .get('projects')
   .push(project)
@@ -96,12 +102,20 @@ exports.getTask = id => db
   .find({ id })
   .value();
 
+// exports.addTask = task => db
+//   .get('tasks')
+//   .post(task)
+//   .write()
+//   .value();
+
 exports.addTask = task => db
   .get('tasks')
   .push(task)
   .write();
 
- exports.deleteTask = id => db
+
+//added
+  exports.deleteTask = id => db
   .get('tasks')
   .remove({ id })
   .write();
